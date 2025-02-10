@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> baseHead customTitle='สร้างโพสใหม่ | '}}
+<body>
+    {{> siteHeader}}
+    <div class="section">
+            <div class="container">
+                <h2>สร้างโพสต์ใหม่</h2>
+                <p class="mg-bt-large">ฝากถามเพื่อน...</p>
+                <form action="/p/new" method="post">
+                    <p>
+                        <input type="text" name="title" placeholder="หัวข้อ" value="{{values.title}}">
+                    </p>
+                    <p>
+                        <textarea name="content" placeholder="เนื้อหา" rows="3" value="{{values.content}}"></textarea>
+                    </p>
+                    <p>
+                        <input type="text" name="from" placeholder="จากคุณ" value="{{values.from}}">
+                    </p>
+                    <p>
+                        <input id="input-accepted" type="checkbox" name="accepted">
+                        <label for="input-accepted">ยอมรับตกลง บลาๆๆ</label>
+                    </p>
+                    <p>
+                        <button class="button" type="submit">สร้างโพสต์</button>
+                    </p>
+                    {{#if errorMessage}}
+                    <p>{{errorMessage}}</p>
+                </form>
+                {{/if}}
+            </div>
+    </div>
+    {{> siteFooter}}
+</body>
+</html>
+
+{{!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post | FeelGood</title>
+</head>
+<body>
+    <p>สร้างโพสใหม่</p>
+</body>
+</html> --}}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> baseHead customTitle=customTitle}}
+<body>
+    {{> siteHeader}}
+    <section class="section">
+        <div class="container">
+            {{#if onePost}}
+            <div class="box">
+                <h2>{{onePost.title}}</h2>
+                <p>
+                    <span>{{onePost.from}} | </span>
+                    <span class="text-gray">{{onePost.createdAtText}}</span>
+                </p>
+                <div>{{onePost.content}}</div> <!--เปลี่ยน p เป็น div ป้องกัน padding จาก css -->
+            </div>
+            <hr>
+            <form action="/p/{{onePost.id}}/comment" method="post">
+                <p>
+                    <textarea name="content" placeholder="แสดงความคิดเห็น" rows="3" value="{{values.content}}"></textarea>
+                </p>
+                <p>
+                    <input type="text" name="from" placeholder="จากคุณ" value="{{values.from}}">
+                </p>
+                <p>
+                    <input id="input-accepted" type="checkbox" name="accepted">
+                    <label for="input-accepted">ยอมรับตกลง บลาๆๆ</label>
+                </p>
+                <p>
+                    <button type="submit" class="button">คอมเม้นท์</button>
+                </p>
+                {{#if errorMessage}}
+                <p>{{errorMessage}}</p>
+                {{/if}}
+            </form>
+            <hr>
+            {{#if postComments}}
+            <h4>{{postComments.length}} คอมเม้นท์ </h4> <!--แก้เป็นpostComments เพราะจำนวนคอมเม้นไม่แสดงผล -->
+            {{else}}
+            <h4>ได้โปรดคอมเม้นท์</h4>
+            {{/if}}
+            {{#each postComments}}
+            <div class="box">
+                <p>
+                    <span>{{this.from}}</span>
+                    <span class="text-gray">{{this.createdAtText}}</span>
+                </p>
+                <div>{{this.content}}</div>
+            </div>
+            {{/each}}
+            {{else}}
+            <p>ไม่พบโพสต์ที่คุณต้องการดู</p>
+            {{/if}}
+        </div>
+    </section>
+    {{> siteFooter}}
+    {{> siteScrollTop}}
+    {{> siteScripts}}
+</body>
+</html>
